@@ -311,7 +311,7 @@ function expt(v) {
 }
 
 // price calculator
-function pc(v,a,b,c) { // v(type) a(36-42), b(44), c(46)
+function pc(v,a,b,c,d,e) { // v(type) a(36-42), b(44), c(46), d(32), e(34)
   //odprice
   // let prc=JSON.parse(localStorage.pc);
   let svc='', sva='', svbc='', svab='', svpls1='', svpls2='';
@@ -324,14 +324,41 @@ function pc(v,a,b,c) { // v(type) a(36-42), b(44), c(46)
   svpls2 = ((c!=0) && ((a+b)!=0)) ? svpls2='+' : svpls2='';
 
   let pj1=0;
-  if ((v=='Bio') || (v=='NBio')) { //console.log('BN')
+  if ((v=='Bio')) { //console.log('BN')
     let pj1=(a*prc.pc[v][0]+(b+c)*prc.pc[v][1]);odprice[v]=prc.pc[v];
     pctt+=pj1;pcwt+=(a+b+c)*Number(prc.wt[v]);
     return "<td colspan='2'><b>"+(a+b+c)+' '+v+"</b><b class='sa2'>"+sva+svpls1+svbc+" = </b></td><td class='sb3'><b>"+pj1+'₹</b></td>'
-  }else if (v=='OverS') { //console.log('O')
-    pj1=((a+b+c)*prc.pc[v][0]);odprice[v]=prc.pc[v];
-    pctt+=pj1;pcwt+=(a+b+c)*Number(prc.wt[v]);
-    return "<td colspan='2'><b>"+(a+b+c)+' '+v+"</b><b class='sa2'>"+(a+b+c)+'×'+prc.pc[v][0]+" = </b></td><td class='sb3'><b>"+pj1+'₹</b></td>'
+  }else if ((v=='NBio')) { 
+    if(document.querySelector('#NBio #White.oj')){
+      let wh11=document.querySelectorAll('#NBio #White.oj td input');
+      let wha=0, whb=0;
+    for (let h = 0; h< wh11.length; h++) {
+     let njh=Number(wh11[h].value);
+     if (h<=3) {
+      wha+=njh;
+     } else {
+      whb+=njh;
+     }
+      console.log(wha,whb);
+  }
+  let whpc=15;let whva='',whvpls1='',whvbc='';
+  let pj10=(wha*(prc.pc[v][0]+whpc)+(whb)*(prc.pc[v][1]+whpc));odprice[v]=prc.pc[v];
+      pctt+=pj10;pcwt+=(wha+whb)*Number(prc.wt[v]);
+      whva = (wha!=0) ? whva=wha+'×'+(prc.pc[v][0]+whpc) : whva='';
+      whvpls1 = ((wha!=0) && ((whb)!=0)) ? whvpls1='+' : whvpls1='';
+      whvbc= ((whb)!=0) ? whvbc=(whb)+'×'+(prc.pc[v][1]+whpc) : whvbc='';
+  
+      let pj1=((a-wha)*prc.pc[v][0]+(b+c-whb)*prc.pc[v][1]);
+      pctt+=pj1;pcwt+=(a+b+c-wha-whb)*Number(prc.wt[v]);
+  
+      let wht0="<td colspan='2'><b>"+(wha+whb)+' '+v+' White'+"</b><b class='sa2'>"+whva+whvpls1+whvbc+" = </b></td><td class='sb3'><b>"+pj10+'₹</b></td>';
+      let wht1="<td colspan='2'><b>"+(a+b+c-wha-whb)+' '+v+"</b><b class='sa2'>"+(((a-wha)!=0) ? sva=(a-wha)+'×'+prc.pc[v][0] : sva='')+((((a-wha)!=0) && ((b+c-whb)!=0)) ? svpls1='+' : svpls1='')+(((b+c-whb)!=0) ? svbc=(b+c-whb)+'×'+prc.pc[v][1] : svbc='')+" = </b></td><td class='sb3'><b>"+pj1+'₹</b></td>'
+      return ((a+b+c-wha-whb)&&('<tr>'+wht1+'<tr/><tr>'))+'<tr>'+wht0+'<tr/>'
+    }else{}
+  }else if (v=='OverS' || v=='Kids') { //console.log('O')
+    pj1=((a+b+c+d+e)*prc.pc[v][0]);odprice[v]=prc.pc[v];
+    pctt+=pj1;pcwt+=(a+b+c+d+e)*Number(prc.wt[v]);
+    return "<td colspan='2'><b>"+(a+b+c+d+e)+' '+v+"</b><b class='sa2'>"+(a+b+c+d+e)+'×'+prc.pc[v][0]+" = </b></td><td class='sb3'><b>"+pj1+'₹</b></td>'
   }else if ((v=='Polo') || (v=='Hood') || (v=='Sweat')) { //console.log('PHS')
     pj1=((a+b)*prc.pc[v][0]+c*prc.pc[v][1]);odprice[v]=prc.pc[v];
     pctt+=pj1;pcwt+=(a+b+c)*Number(prc.wt[v]);
