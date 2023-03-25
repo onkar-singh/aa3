@@ -341,10 +341,11 @@ for (let t of hjk) {
 // function clewr(v, i) {
 //   ty[i].value='';
 // }
- let ty1=document.querySelectorAll(".city thead > tr.w3-blue-grey>th");let ty11=ty1.length;
- for (let q = 1; q < ty11; q++) {
-  if(q%7){ty1[q].innerText='';}
- } 
+let ty1=document.querySelectorAll(".city thead > tr.w3-blue-grey>th");let ty11=ty1.length;
+for (let q = 1; q < ty11; q++) {
+    let av=ty1[q];
+ if(av.innerText!='Total'){av.innerText='';}
+} 
 //  let ty2=document.querySelectorAll("thead > tr.w3-blue-grey>th:nth-child(1)");
 //   for (let q = 0; q < ty2.length; q++) {
 //   ty2[q].innerText='Total';
