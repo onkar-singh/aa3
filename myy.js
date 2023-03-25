@@ -353,7 +353,7 @@ function pc(v,a,b,c,d,e) { // v(type) a(36-42), b(44), c(46), d(32), e(34)
   
       let wht0="<td colspan='2'><b>"+(wha+whb)+' '+v+' White'+"</b><b class='sa2'>"+whva+whvpls1+whvbc+" = </b></td><td class='sb3'><b>"+pj10+'₹</b></td>';
       let wht1="<td colspan='2'><b>"+(a+b+c-wha-whb)+' '+v+"</b><b class='sa2'>"+(((a-wha)!=0) ? sva=(a-wha)+'×'+prc.pc[v][0] : sva='')+((((a-wha)!=0) && ((b+c-whb)!=0)) ? svpls1='+' : svpls1='')+(((b+c-whb)!=0) ? svbc=(b+c-whb)+'×'+prc.pc[v][1] : svbc='')+" = </b></td><td class='sb3'><b>"+pj1+'₹</b></td>'
-      return ((a+b+c-wha-whb)&&('<tr>'+wht1+'<tr/><tr>'))+'<tr>'+wht0+'<tr/>'
+      return (((a+b+c-wha-whb)||'')&&('<tr>'+wht1+'<tr/><tr>'))+(((wha+whb)||'')&&('<tr>'+wht0+'<tr/>'))
     }else{}
   }else if (v=='OverS' || v=='Kids') { //console.log('O')
     pj1=((a+b+c+d+e)*prc.pc[v][0]);odprice[v]=prc.pc[v];
