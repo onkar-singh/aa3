@@ -309,7 +309,6 @@ function expt(v) {
     tabletcsv('testTable',new Date().toLocaleString("en-GB"));
   },3000)
 }
-
 // price calculator
 function pc(v,a,b,c,d,e) { // v(type) a(36-42), b(44), c(46), d(32), e(34)
   //odprice
