@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<title>ROP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="om.css">
+<script src="vue.js"></script>
+
+<style>
+.content {max-width: 500px;margin: auto;/* background: #b0e0e6 */;}
+#ptdli li{padding: 8px;}
+#ptdli li input{float: left;top: 0;}
+#ptdli li label:last-child{float: right;}
+</style>
+
+<body style="/* background: #7fffd4; */">
+    <div class="content w3-border">
+    <div class="w3-bar w3-aqua">
+        <input class="w3-bar-item w3-input w3-border" style="padding: 8px;" placeholder="Party Name/Bill No." type="text">
+        <button class="w3-bar-item w3-button w3-green" style="padding: 9px;">Search</button>
+        <button class="w3-bar-item w3-button w3-blue" style="padding: 9px;">Print</button>
+    </div>
+    <ul id="ptdli" class="w3-ul w3-hoverable">
+        <li><input class="w3-check" type="checkbox">
+        <label>2125.Party Name</label>
+        <label>50 ....... 25/03</label>
+        </li>
+    </ul>
+</div>
+
+
+</body>
+</html>
